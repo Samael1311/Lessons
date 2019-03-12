@@ -165,11 +165,9 @@ optExpItems.forEach(function (element) {
 	});
 });
 
-	
 
 document.querySelectorAll('.expenses-item').forEach(function (){
-
-	addEventListener('input', function(){
+	addEventListener('input', function(event){
 		let c = 0;
 		document.querySelectorAll('.expenses-item').forEach(function (e){
 			if(e.value != ""){
@@ -184,10 +182,15 @@ document.querySelectorAll('.expenses-item').forEach(function (){
 			}
 	
 		});
-		// 	if(с == 4 && appData.timeData != null && appData.budget != null){
-		// 	btnExp.disabled = false;
-		// 	btnCount.disabled = false;
-		// }	
 	});
 });
 
+
+// for (let i = 1; i <= document.querySelectorAll('.expenses-item').length; i+2) {
+
+// 	addEventListener('keyup', function(){
+// 		document.querySelectorAll('.expenses-item').item(i).value = document.querySelectorAll('.expenses-item').item(i).value.replace(/[^А-Яа-яЁё\s]/g,'');
+// 	});
+// }
+
+	
