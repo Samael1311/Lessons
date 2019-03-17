@@ -25,19 +25,22 @@ let btnStartCount = document.getElementById('start'),
 
 	let money, time;
 
-	btnStartCount.addEventListener('click', function(){
+	btnStartCount.addEventListener('click', function(e){
+	e.target.className = 'start startnew';
+	
 		time = prompt("Введите дату в формате YYYY-MM-DD", "");
 		money = +prompt("Ваш бюджет на месяц?", "");
 	
 		while (isNaN(money) || money == '' || money == null) {
 			money = +prompt("Ваш бюджет на месяц?", "");
-		};
+		}
 		appData.budget = money;
 		appData.timeData = time;
 		budgetValue.textContent = money.toFixed();
 		yearValue.value = new Date(Date.parse(time)).getFullYear();
 		monthValue.value = new Date(Date.parse(time)).getMonth()+1;
 		dayValue.value = new Date(Date.parse(time)).getDate();
+	//	e.target.disabled = true;
 	});
 
 	btnExp.addEventListener('click', function (){
@@ -165,10 +168,18 @@ optExpItems.forEach(function (element) {
 	});
 });
 
+let z = 2;
+document.querySelectorAll('.expenses-item').forEach(function (el){
 
-document.querySelectorAll('.expenses-item').forEach(function (){
 	addEventListener('input', function(event){
-		let c = 0;
+		let c = 0; 
+		if (el.matches('#expenses_'+ z)){
+		//console.log(el.matches('#expenses_'+ z));
+		el.addEventListener('keyup', function(){
+			el.value = el.value.replace(/[^0-9]/g,'');
+		});
+		z = z+2;
+		}
 		document.querySelectorAll('.expenses-item').forEach(function (e){
 			if(e.value != ""){
 				c++;
@@ -185,12 +196,15 @@ document.querySelectorAll('.expenses-item').forEach(function (){
 	});
 });
 
-
-// for (let i = 1; i <= document.querySelectorAll('.expenses-item').length; i+2) {
-
-// 	addEventListener('keyup', function(){
-// 		document.querySelectorAll('.expenses-item').item(i).value = document.querySelectorAll('.expenses-item').item(i).value.replace(/[^А-Яа-яЁё\s]/g,'');
-// 	});
+//  document.querySelector('.data').addEventListener('click', function (event){
+// 	 if(event.target.matches('.expenses-item')){
+// 	let ch = document.querySelectorAll('.expenses-item');
+// 	for (let i = 1; i < ch.length; i+2) {
+// 		ch[i].value = ch[i].value.replace(/^0-9/g, '');
+		
+// 	}
 // }
+
+//  })
 
 	
